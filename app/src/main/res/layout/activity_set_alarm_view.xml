@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".setAlarmView">
+
+    <TextView
+        android:id="@+id/Time"
+        android:layout_width="73dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
+        android:text="Time"
+        android:textColor="#88AEC1"
+        android:textSize="30dp"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Date" />
+
+    <TextView
+        android:id="@+id/Date"
+        android:layout_width="83dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="100dp"
+        android:text="Date"
+        android:textColor="#88AEC1"
+        android:textSize="30dp"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleBackground" />
+
+    <Switch
+        android:id="@+id/important"
+        android:layout_width="334dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginBottom="284dp"
+        android:text="Is Task Important?"
+        android:textColor="#88AEC1"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/timeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="16dp"
+        android:text="Set time"
+        android:onClick="showTimePickerDialog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DateButton" />
+
+    <TextView
+        android:id="@+id/setedTime"
+        android:layout_width="152dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="20dp"
+        android:text="Not seted yet"
+        android:textAlignment="center"
+        android:textSize="20dp"
+
+        app:layout_constraintEnd_toStartOf="@+id/timeButton"
+        app:layout_constraintTop_toBottomOf="@+id/setedDate" />
+
+    <Button
+        android:id="@+id/DateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="16dp"
+        android:text="set date"
+        android:onClick="showDatePickerDialog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleBackground" />
+
+    <TextView
+        android:id="@+id/setedDate"
+        android:layout_width="150dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="100dp"
+        android:text="Not seted yet"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        app:layout_constraintStart_toEndOf="@+id/Date"
+        app:layout_constraintTop_toBottomOf="@+id/titleBackground" />
+
+    <ImageView
+        android:id="@+id/titleBackground"
+        android:layout_width="390dp"
+        android:layout_height="123dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/top_background" />
+
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="8dp"
+        android:text="Alarm Title"
+        android:textColor="#88AEC1"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/titlePlain"
+        app:layout_constraintStart_toStartOf="@+id/titleBackground" />
+
+    <EditText
+        android:id="@+id/titlePlain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="16dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Enter Title Here"
+        android:textColor="#ffffff"
+        app:layout_constraintBottom_toBottomOf="@+id/titleBackground"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
