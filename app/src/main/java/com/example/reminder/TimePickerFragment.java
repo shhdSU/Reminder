@@ -9,6 +9,8 @@ import android.widget.TimePicker;
 
 import java.util.Calendar;
 
+import static com.example.reminder.setAlarmView.selectedTime;
+
 public class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
 
 
@@ -24,7 +26,7 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
     }
 
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-
+        selectedTime.setText(hourOfDay+":"+minute);
     }
 
 
