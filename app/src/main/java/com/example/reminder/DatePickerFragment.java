@@ -9,8 +9,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.Calendar;
+import java.util.Date;
 
-import static com.example.reminder.setAlarmView.selectedDate;
+import static com.example.reminder.NewReminder.selectedDate;
+import static com.example.reminder.NewReminder.task;
 
 
 public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
@@ -27,5 +29,10 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
     @Override
     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
         selectedDate.setText(day+"-"+month+"-"+year);
+        task.calendar.set(Calendar.YEAR,year);
+        task.calendar.set(Calendar.MONTH,month);
+        task.calendar.set(Calendar.DAY_OF_MONTH,day);
+
+       // System.out.println("Date in date picker is "+task.calendar.getTime());
     }
 }

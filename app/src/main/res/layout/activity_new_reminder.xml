@@ -4,7 +4,75 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".setAlarmView">
+    tools:context=".NewReminder">
+
+    <Button
+        android:id="@+id/timeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:onClick="onClick"
+        android:text="Set time"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.661" />
+
+    <Button
+        android:id="@+id/DateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:onClick="onClick"
+        android:text="set date"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/addReminderButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="add reminder"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.465"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.95" />
+
+    <EditText
+        android:id="@+id/titleText"
+        android:layout_width="223dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="44dp"
+        android:ems="10"
+        android:hint="Enter the reminder title"
+        android:inputType="text"
+        android:textColor="#121111"
+        app:layout_constraintBottom_toTopOf="@+id/setedDate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.157"
+        app:layout_constraintStart_toEndOf="@+id/Title"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.69" />
+
+    <Switch
+        android:id="@+id/important"
+        android:layout_width="334dp"
+        android:layout_height="39dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginStart="32dp"
+        android:text="Is Task Important?"
+        android:textColor="#88AEC1"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setedTime"
+        app:layout_constraintVertical_bias="0.274" />
 
     <TextView
         android:id="@+id/Time"
@@ -35,62 +103,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Switch
-        android:id="@+id/important"
-        android:layout_width="334dp"
-        android:layout_height="39dp"
-        android:layout_marginEnd="27dp"
-        android:layout_marginStart="32dp"
-        android:text="Is Task Important?"
-        android:textColor="#88AEC1"
-        android:textSize="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setedTime" />
-
-    <Button
-        android:id="@+id/timeButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:onClick="onClick"
-        android:text="Set time"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.661" />
-
     <TextView
         android:id="@+id/setedTime"
         android:layout_width="152dp"
         android:layout_height="34dp"
         android:layout_marginEnd="36dp"
         android:layout_marginTop="72dp"
-        android:text="Not seted yet"
         android:textAlignment="center"
         android:textSize="20dp"
 
         app:layout_constraintEnd_toStartOf="@+id/timeButton"
         app:layout_constraintTop_toBottomOf="@+id/setedDate" />
 
-    <Button
-        android:id="@+id/DateButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:onClick="onClick"
-        android:text="set date"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/setedDate"
         android:layout_width="150dp"
         android:layout_height="33dp"
         android:layout_marginStart="28dp"
-        android:text="Not seted yet"
         android:textAlignment="center"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -98,22 +127,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/Date"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/titlePlain"
-        android:layout_width="223dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="44dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Enter Title Here"
-        android:textColor="#ffffff"
-        app:layout_constraintBottom_toTopOf="@+id/setedDate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.157"
-        app:layout_constraintStart_toEndOf="@+id/Title"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.69" />
 
     <TextView
         android:id="@+id/Title"

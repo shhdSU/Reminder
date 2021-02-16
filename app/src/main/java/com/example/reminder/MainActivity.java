@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openSetAlarmView(){
-        Intent intent = new Intent(this, setAlarmView.class);
+        Intent intent = new Intent(this, NewReminder.class);
         startActivity(intent);
     }
 }
