@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import java.util.Calendar;
 import java.util.Date;
 
 
@@ -26,8 +27,6 @@ public class NewReminder extends AppCompatActivity implements View.OnClickListen
     public static TextView selectedDate;
     public static TextView selectedTime;
     public static Task task;
-    Button addButton;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,25 +81,29 @@ public class NewReminder extends AppCompatActivity implements View.OnClickListen
 
     }
     public void addReminder() {
-        String reminderTitle = ((EditText) findViewById(R.id.titleText)).getText().toString();
-        String reminderDate = selectedDate.getText().toString();
-        String reminderTime = selectedTime.getText().toString();
-        task.important = ((Switch) findViewById(R.id.important)).isChecked();
-        ((EditText) findViewById(R.id.titleText)).setText("");
+        long timeAtClicking = System.currentTimeMillis();
+        System.out.println("Timr at click "+ timeAtClicking);
+        long timeDifference = (task.calendar.getTime().getTime()) - (new Date().getTime());
+        System.out.println("Timr differe  "+ timeDifference);
+        System.out.println("WAIT FOR   "+ timeDifference+timeAtClicking);
+        //System.out.println("TIME fron calender "+(task.calendar.getTimeInMillis() - Calendar.getInstance().getTimeInMillis()));
+        EditText titleText = findViewById(R.id.titleText);
+        Switch isImportant = findViewById(R.id.important);
+        task.title = titleText.getText().toString();
+        task.important = isImportant.isChecked();
+
+        //Clean all inputs to re-enter another reminder's data
+        titleText.setText("");
         selectedDate.setText("");
         selectedTime.setText("");
-        ((Switch) findViewById(R.id.important)).setChecked(false);
+        isImportant.setChecked(false);
 
-        long timeDifference = (task.calendar.getTime().getTime()) - (new Date().getTime());
-        Intent reminderIntent = new Intent(this, ReminderDetails.class);
-        reminderIntent.putExtra("reminderTitle", reminderTitle);
-        reminderIntent.putExtra("reminderDate", reminderDate);
-        reminderIntent.putExtra("reminderTime", reminderTime);
+        Intent reminderIntent = new Intent(this, ReminderManager.class);
 
         PendingIntent onTappedNotification = PendingIntent.getBroadcast(this, 1, reminderIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + timeDifference, onTappedNotification);
+        alarmManager.set(AlarmManager.RTC_WAKEUP,  timeDifference, onTappedNotification);
 
 
         Toast.makeText(this,"The reminder was set successfully!",Toast.LENGTH_SHORT).show();
