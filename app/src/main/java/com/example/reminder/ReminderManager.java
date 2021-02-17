@@ -9,9 +9,7 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
-
-import com.example.reminder.R;
-
+import static com.example.reminder.NewReminder.remindersCount;
 import static com.example.reminder.NewReminder.selectedDate;
 import static com.example.reminder.NewReminder.selectedTime;
 import static com.example.reminder.NewReminder.task;
@@ -27,7 +25,9 @@ public class ReminderManager extends BroadcastReceiver {
         reminderIntent.putExtra("reminderDate", reminderDate);
         reminderIntent.putExtra("reminderTime", reminderTime);
         reminderIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context,3,reminderIntent,0);
+
+        PendingIntent pendingIntent = PendingIntent.getActivity(context,remindersCount,reminderIntent,0);
+
         if (task.important) {
             NotificationCompat.Builder notifyBuilder =
                     new NotificationCompat.Builder(context, "high_important_channel")

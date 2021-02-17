@@ -27,9 +27,12 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
     }
 
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-        selectedTime.setText(hourOfDay+":"+minute);
-        task.calendar.set(Calendar.HOUR_OF_DAY,hourOfDay);
-        task.calendar.set(Calendar.MINUTE,minute);
+        selectedTime.setText(view.getHour()+":"+view.getMinute());
+        task.calendar.set(Calendar.HOUR_OF_DAY,view.getHour());
+        task.calendar.set(Calendar.MINUTE,view.getMinute());
+        task.calendar.set(Calendar.SECOND,0);
+        task.calendar.set(Calendar.MILLISECOND,0);
+
 
     }
 
