@@ -13,16 +13,15 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+
+import static com.example.reminder.MainActivity.DB;
 
 
 public class NewReminder extends AppCompatActivity implements View.OnClickListener{
-    public static int remindersCount = 0;
+    public static int remindersCount = 1;
     public static TextView selectedDate; // text view to show the selected date from the date picker
     public static TextView selectedTime; // text view to show the selected time from the time picker
     public static Task task; // the current task object which will be used in the code
-    final String FILE_NAME = "Reminders.txt";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,29 +62,28 @@ public class NewReminder extends AppCompatActivity implements View.OnClickListen
         task.title = titleText.getText().toString(); // assign the entered title to the current task object
         task.important = isImportant.isChecked(); // assign the importance of the reminder as BOOLEAN in the current task object
 
+        //Prepare the intents to be used to set the alarm
+        Intent reminderIntent = new Intent(this, ReminderManager.class);
+        PendingIntent onTappedNotification = PendingIntent.getBroadcast(this,remindersCount, reminderIntent.putExtra("id",remindersCount), PendingIntent.FLAG_UPDATE_CURRENT);
+        //Create the alarm manager to schedule the reminder's notification based on its date and time
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC_WAKEUP,  task.calendar.getTimeInMillis(), onTappedNotification);
+        insertToRemindersDB();
+        Toast.makeText(this,"The reminder was set successfully!",Toast.LENGTH_SHORT).show();
+
         //Clean all inputs to re-enter another reminder's data
         titleText.setText("");
         selectedDate.setText("");
         selectedTime.setText("");
         isImportant.setChecked(false);
-
-        //Prepare the intents to be used to set the alarm
-        Intent reminderIntent = new Intent(this, ReminderManager.class);
-        PendingIntent onTappedNotification = PendingIntent.getBroadcast(this, ++remindersCount, reminderIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        //Create the alarm manager to schedule the reminder's notification based on its date and time
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        alarmManager.set(AlarmManager.RTC_WAKEUP,  task.calendar.getTimeInMillis(), onTappedNotification);
-        writeToRemindersFile();
-        Toast.makeText(this,"The reminder was set successfully!",Toast.LENGTH_SHORT).show();
+        remindersCount++;
     }
 
-    public void writeToRemindersFile(){
-        try {
-            FileOutputStream toWrite = openFileOutput(FILE_NAME,Context.MODE_PRIVATE);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
+    public void insertToRemindersDB(){
+        if(task.important)
+        DB.insertData(remindersCount,task.title,task.date,task.time,1);
+        else
+        DB.insertData(remindersCount,task.title,task.date,task.time,0);
     }
 
 }

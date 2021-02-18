@@ -13,20 +13,24 @@ import static com.example.reminder.NewReminder.remindersCount;
 import static com.example.reminder.NewReminder.selectedDate;
 import static com.example.reminder.NewReminder.selectedTime;
 import static com.example.reminder.NewReminder.task;
+import static com.example.reminder.MainActivity.DB;
 
 public class ReminderManager extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         NotificationManagerCompat manager = NotificationManagerCompat.from(context);
         Intent reminderIntent = new Intent(context, ReminderDetails.class);
-        reminderIntent.putExtra("reminderTitle", task.title);
+        System.out.println("RETR  ID  "+ intent.getIntExtra("id",-1));
+        task = DB.retrieveReminder(intent.getIntExtra("id",-1));
+
+       /* reminderIntent.putExtra("reminderTitle", task.title);
         String reminderDate = selectedDate.getText().toString();
         String reminderTime = selectedTime.getText().toString();
         reminderIntent.putExtra("reminderDate", reminderDate);
-        reminderIntent.putExtra("reminderTime", reminderTime);
+        reminderIntent.putExtra("reminderTime", reminderTime);*/
         reminderIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
-        PendingIntent pendingIntent = PendingIntent.getActivity(context,remindersCount,reminderIntent,0);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context,0,reminderIntent,0);
 
         if (task.important) {
             NotificationCompat.Builder notifyBuilder =

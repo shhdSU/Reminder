@@ -12,7 +12,7 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
     private Button addButton;
-
+    public static DatabaseHelper DB ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         //create 2 channels for the 2 types of reminders
         createNotificationChannels();
         addButton = findViewById(R.id.button2);
+        DB = new DatabaseHelper(this);
         addButton.setOnClickListener(new View.OnClickListener() {
 
             @Override

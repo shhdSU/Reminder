@@ -10,5 +10,6 @@ public class Task {
     public String title;
     Calendar calendar = Calendar.getInstance();
     public String time;
+    public String date;
     public boolean important;
 }
