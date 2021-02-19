@@ -1,7 +1,6 @@
 package com.example.reminder;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
+
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -9,10 +8,6 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
-import static com.example.reminder.NewReminder.remindersCount;
-import static com.example.reminder.NewReminder.selectedDate;
-import static com.example.reminder.NewReminder.selectedTime;
-import static com.example.reminder.NewReminder.task;
 import static com.example.reminder.MainActivity.DB;
 
 public class ReminderManager extends BroadcastReceiver {
@@ -20,23 +15,21 @@ public class ReminderManager extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         NotificationManagerCompat manager = NotificationManagerCompat.from(context);
         Intent reminderIntent = new Intent(context, ReminderDetails.class);
-        System.out.println("RETR  ID  "+ intent.getIntExtra("id",-1));
-        task = DB.retrieveReminder(intent.getIntExtra("id",-1));
-
-       /* reminderIntent.putExtra("reminderTitle", task.title);
-        String reminderDate = selectedDate.getText().toString();
-        String reminderTime = selectedTime.getText().toString();
-        reminderIntent.putExtra("reminderDate", reminderDate);
-        reminderIntent.putExtra("reminderTime", reminderTime);*/
+        int id =intent.getIntExtra("id",-5);
+        System.out.println("RETR  ID  "+id );
+        Task newTask = DB.retrieveReminder(id);
+        reminderIntent.putExtra("reminderTitle", newTask.title);
+        reminderIntent.putExtra("reminderDate", newTask.date);
+        reminderIntent.putExtra("reminderTime", newTask.time);
         reminderIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
-        PendingIntent pendingIntent = PendingIntent.getActivity(context,0,reminderIntent,0);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context,id,reminderIntent,0);
 
-        if (task.important) {
+        if (newTask.important) {
             NotificationCompat.Builder notifyBuilder =
                     new NotificationCompat.Builder(context, "high_important_channel")
                             .setContentTitle("REMINDER!")
-                            .setContentText(task.title)
+                            .setContentText(newTask.title)
                             .setSmallIcon(R.drawable.reminder)
                             .setLargeIcon(BitmapFactory.decodeResource(context.getResources(),R.drawable.reminder))
                             .setContentIntent(pendingIntent)
@@ -48,7 +41,7 @@ public class ReminderManager extends BroadcastReceiver {
             NotificationCompat.Builder notifyBuilder =
                     new NotificationCompat.Builder(context, "low_important_channel")
                             .setContentTitle("REMINDER!")
-                            .setContentText(task.title)
+                            .setContentText(newTask.title)
                             .setSmallIcon(R.drawable.reminder)
                             .setLargeIcon(BitmapFactory.decodeResource(context.getResources(),R.drawable.reminder))
                             .setContentIntent(pendingIntent)

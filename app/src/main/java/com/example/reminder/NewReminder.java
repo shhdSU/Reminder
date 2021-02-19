@@ -1,9 +1,11 @@
 package com.example.reminder;
 
+import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
@@ -18,10 +20,12 @@ import static com.example.reminder.MainActivity.DB;
 
 
 public class NewReminder extends AppCompatActivity implements View.OnClickListener{
-    public static int remindersCount = 1;
+    public static int remindersCount ;
     public static TextView selectedDate; // text view to show the selected date from the date picker
     public static TextView selectedTime; // text view to show the selected time from the time picker
     public static Task task; // the current task object which will be used in the code
+    SharedPreferences pref;// Shared preference to save the reminders count even if the app is closed since the count is the primary key in DB
+    SharedPreferences.Editor editor;// shared preference's editor
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +33,13 @@ public class NewReminder extends AppCompatActivity implements View.OnClickListen
         selectedDate = findViewById(R.id.setedDate);
         selectedTime = findViewById(R.id.setedTime);
         task = new Task();
+        remindersCount = DB.getLastId();
+        if(remindersCount ==-1){ //no reminders were inserted before so the next reminder will be the first
+            remindersCount = 1;
+        }else{
+            System.out.println("Id retreved is "+ remindersCount);
+            remindersCount++; // increment the counter to be ready for the next reminder
+        }
     }
 
     @Override
@@ -77,6 +88,7 @@ public class NewReminder extends AppCompatActivity implements View.OnClickListen
         selectedTime.setText("");
         isImportant.setChecked(false);
         remindersCount++;
+
     }
 
     public void insertToRemindersDB(){

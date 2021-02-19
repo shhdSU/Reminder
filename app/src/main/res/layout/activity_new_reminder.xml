@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFBEF"
     tools:context=".NewReminder">
 
     <Button
@@ -13,10 +14,11 @@
         android:layout_marginEnd="16dp"
         android:onClick="onClick"
         android:text="Set time"
+        android:textColor="#633223"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.661" />
+        app:layout_constraintVertical_bias="0.607" />
 
     <Button
         android:id="@+id/DateButton"
@@ -25,16 +27,21 @@
         android:layout_marginEnd="16dp"
         android:onClick="onClick"
         android:text="set date"
+        android:textColor="#633223"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.453" />
 
     <Button
         android:id="@+id/addReminderButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="195dp"
+        android:layout_height="61dp"
+        android:background="#633223"
         android:onClick="onClick"
         android:text="add reminder"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.465"
@@ -46,33 +53,29 @@
         android:id="@+id/titleText"
         android:layout_width="223dp"
         android:layout_height="39dp"
-        android:layout_marginStart="44dp"
+        android:layout_marginStart="36dp"
         android:ems="10"
         android:hint="Enter the reminder title"
         android:inputType="text"
         android:textColor="#121111"
         app:layout_constraintBottom_toTopOf="@+id/setedDate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.157"
         app:layout_constraintStart_toEndOf="@+id/Title"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.69" />
+        app:layout_constraintVertical_bias="0.808" />
 
     <Switch
         android:id="@+id/important"
         android:layout_width="334dp"
         android:layout_height="39dp"
-        android:layout_marginEnd="27dp"
-        android:layout_marginStart="32dp"
         android:text="Is Task Important?"
-        android:textColor="#88AEC1"
+        android:textColor="#633223"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.519"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/setedTime"
-        app:layout_constraintVertical_bias="0.274" />
+        app:layout_constraintVertical_bias="0.292" />
 
     <TextView
         android:id="@+id/Time"
@@ -80,36 +83,37 @@
         android:layout_height="36dp"
         android:layout_marginBottom="111dp"
         android:text="Time"
-        android:textAlignment="center"
-        android:textColor="#88AEC1"
-        android:textSize="30dp"
+        android:textAlignment="textStart"
+        android:textColor="#633223"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.124"
+        app:layout_constraintHorizontal_bias="0.118"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.75" />
+        app:layout_constraintVertical_bias="0.707" />
 
     <TextView
         android:id="@+id/Date"
         android:layout_width="83dp"
         android:layout_height="38dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="40dp"
         android:text="Date"
-        android:textAlignment="center"
-        android:textColor="#88AEC1"
-        android:textSize="30dp"
+        android:textAlignment="textStart"
+        android:textColor="#633223"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.447" />
 
     <TextView
         android:id="@+id/setedTime"
         android:layout_width="152dp"
         android:layout_height="34dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginTop="72dp"
-        android:textAlignment="center"
+        android:layout_marginEnd="4dp"
+        android:layout_marginTop="68dp"
+        android:textAlignment="textStart"
         android:textSize="20dp"
 
         app:layout_constraintEnd_toStartOf="@+id/timeButton"
@@ -120,26 +124,38 @@
         android:layout_width="150dp"
         android:layout_height="33dp"
         android:layout_marginStart="28dp"
-        android:textAlignment="center"
+        android:textAlignment="textStart"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/DateButton"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/Date"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.451" />
 
     <TextView
         android:id="@+id/Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Alarm Title"
-        android:textColor="#88AEC1"
-        android:textSize="20dp"
-        android:textStyle="bold"
+        android:layout_marginStart="40dp"
+        android:text="Title"
+        android:textColor="#633223"
+        android:textSize="30sp"
+        android:textStyle="normal"
         app:layout_constraintBottom_toTopOf="@+id/Date"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.709" />
+        app:layout_constraintVertical_bias="0.811" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="131dp"
+        android:layout_height="134dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.07"
+        app:srcCompat="@drawable/reminder" />
 
 </android.support.constraint.ConstraintLayout>

@@ -27,14 +27,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //go to NewReminder activity
-                openSetAlarmView();
+                openNewReminderActivity();
             }
         });
 
 
     }
 
-    public void openSetAlarmView(){
+    public void openNewReminderActivity(){
         Intent intent = new Intent(this, NewReminder.class);
         startActivity(intent);
     }

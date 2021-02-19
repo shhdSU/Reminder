@@ -71,5 +71,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
          return newTask;
      }
+        public int getLastId() {
+        SQLiteDatabase PDB = this.getReadableDatabase();
+        int id = -1;
+        Cursor cursor = PDB.rawQuery("SELECT MAX(ID) AS ID FROM tasks",null);
+        if (cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                id = cursor.getInt(cursor.getColumnIndex(taskId));
+        }
+        return id;
+    }
 
 }
