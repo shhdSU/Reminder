@@ -16,12 +16,11 @@ public class ReminderManager extends BroadcastReceiver {
         NotificationManagerCompat manager = NotificationManagerCompat.from(context);
         Intent reminderIntent = new Intent(context, ReminderDetails.class);
         int id =intent.getIntExtra("id",-5);
-        System.out.println("RETR  ID  "+id );
         Task newTask = DB.retrieveReminder(id);
         reminderIntent.putExtra("reminderTitle", newTask.title);
         reminderIntent.putExtra("reminderDate", newTask.date);
         reminderIntent.putExtra("reminderTime", newTask.time);
-        reminderIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        reminderIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         PendingIntent pendingIntent = PendingIntent.getActivity(context,id,reminderIntent,0);
 

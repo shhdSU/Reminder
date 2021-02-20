@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     //DB name
-    static final String dbName = "RemindersDatabase.db";
+    static final String dbName = "RemindersDB.db";
     //Tasks table
     static final String taskTable = "Tasks";
     static final String taskId = "ID";
@@ -18,7 +18,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     static final String taskImportance = "Importance";
 
     public DatabaseHelper(Context context) {
-        super(context, dbName, null, 2);
+        super(context, dbName, null, 1);
     }
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
@@ -61,7 +61,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
              newTask.time = c.getString(timeColIndex);
              int imp = c.getInt(importanceColIndex);
              // if imp = 1 then its level of importance is HIGH, else it is LOW
-
              if (imp == 1) {
                  newTask.important = true;
              } else if (imp == 0) {

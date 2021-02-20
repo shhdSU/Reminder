@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         createNotificationChannels();
         addButton = findViewById(R.id.button2);
         DB = new DatabaseHelper(this);
+
         addButton.setOnClickListener(new View.OnClickListener() {
 
             @Override

@@ -24,8 +24,7 @@ public class NewReminder extends AppCompatActivity implements View.OnClickListen
     public static TextView selectedDate; // text view to show the selected date from the date picker
     public static TextView selectedTime; // text view to show the selected time from the time picker
     public static Task task; // the current task object which will be used in the code
-    SharedPreferences pref;// Shared preference to save the reminders count even if the app is closed since the count is the primary key in DB
-    SharedPreferences.Editor editor;// shared preference's editor
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +36,6 @@ public class NewReminder extends AppCompatActivity implements View.OnClickListen
         if(remindersCount ==-1){ //no reminders were inserted before so the next reminder will be the first
             remindersCount = 1;
         }else{
-            System.out.println("Id retreved is "+ remindersCount);
             remindersCount++; // increment the counter to be ready for the next reminder
         }
     }
@@ -78,7 +76,7 @@ public class NewReminder extends AppCompatActivity implements View.OnClickListen
         PendingIntent onTappedNotification = PendingIntent.getBroadcast(this,remindersCount, reminderIntent.putExtra("id",remindersCount), PendingIntent.FLAG_UPDATE_CURRENT);
         //Create the alarm manager to schedule the reminder's notification based on its date and time
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        alarmManager.set(AlarmManager.RTC_WAKEUP,  task.calendar.getTimeInMillis(), onTappedNotification);
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP,  task.calendar.getTimeInMillis(), onTappedNotification);
         insertToRemindersDB();
         Toast.makeText(this,"The reminder was set successfully!",Toast.LENGTH_SHORT).show();
 
